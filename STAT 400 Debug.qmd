@@ -1,0 +1,44 @@
+---
+title: "STAT 400 Thing"
+format: html
+editor: visual
+---
+
+```{r}
+library(forcats)
+```
+
+```{r}
+letters <- c("a", "b", "c", "d")
+numbers <- c("1", "2", "3", "4")
+a <- c("A", "B", "C", "D", "E", "F")
+b <- c("1", "2", "3", "4", "5", "6")
+```
+
+```{r}
+#debugonce(expand.grid)
+test_grid <- expand.grid(letters, numbers, a, b)
+test_grid
+test_grid[order(test_grid$Var1, test_grid$Var2, test_grid$Var3, test_grid$Var4), ]
+```
+
+```{r}
+(f1 <- fct_inorder(c("a4", "a3", "a2", "a1")))
+#> [1] a4 a3 a2 a1
+#> Levels: a4 a3 a2 a1
+(f2 <- factor(c("b4", "b3", "b2", "b1")))
+debugonce(fct_cross)
+fct_cross(f1, f2)
+```
+
+
+```{r}
+#debugonce(fct_cross)
+fct_cross(letters, numbers)
+```
+
+```{r}
+expand.grid(levels(f1), levels(f2)) %>% 
+  arrange(Var1, Var2)
+```
+
